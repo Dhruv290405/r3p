@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>R³P Emergency Alert</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-animation {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .glow-red {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e4e2e1",
+                      "surface-container-low": "#f5f3f3",
+                      "on-secondary-fixed-variant": "#930010",
+                      "tertiary-container": "#751d00",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "surface": "#fbf9f8",
+                      "surface-tint": "#3557bc",
+                      "inverse-surface": "#303030",
+                      "on-tertiary-container": "#ff8561",
+                      "on-primary-fixed": "#00164e",
+                      "on-tertiary-fixed": "#3a0a00",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "surface-container-high": "#eae8e7",
+                      "on-background": "#1b1c1c",
+                      "tertiary-fixed": "#ffdbd1",
+                      "error-container": "#ffdad6",
+                      "outline": "#747684",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#8aa4ff",
+                      "surface-bright": "#fbf9f8",
+                      "on-tertiary-fixed-variant": "#832707",
+                      "surface-container": "#f0eded",
+                      "on-primary-fixed-variant": "#153ea3",
+                      "secondary": "#b6171e",
+                      "primary-fixed": "#dce1ff",
+                      "tertiary": "#4f1100",
+                      "background": "#fbf9f8",
+                      "outline-variant": "#c4c5d5",
+                      "primary-container": "#003399",
+                      "secondary-fixed": "#ffdad6",
+                      "surface-dim": "#dcd9d9",
+                      "on-secondary-container": "#fffbff",
+                      "primary": "#002068",
+                      "secondary-fixed-dim": "#ffb3ac",
+                      "tertiary-fixed-dim": "#ffb59f",
+                      "secondary-container": "#da3433",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#b5c4ff",
+                      "surface-container-highest": "#e4e2e1",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#444653",
+                      "inverse-on-surface": "#f2f0f0",
+                      "on-secondary-fixed": "#410003"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "container-padding": "24px",
+                      "stack-sm": "8px",
+                      "gutter": "16px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Public Sans"],
+                      "body-lg": ["Public Sans"],
+                      "display-lg": ["Public Sans"],
+                      "headline-lg": ["Public Sans"],
+                      "label-lg": ["Public Sans"],
+                      "mono-data": ["JetBrains Mono"],
+                      "headline-md": ["Public Sans"],
+                      "label-md": ["Public Sans"],
+                      "body-md": ["Public Sans"],
+                      "headline-sm": ["Public Sans"]
+              },
+              "fontSize": {
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "label-lg": ["14px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "mono-data": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "900"}],
+                      "label-md-mobile": ["11px", {"lineHeight": "14px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-[#D32F2F] min-h-screen flex flex-col font-body-md text-white overflow-hidden">
+<!-- Top Status Bar (System-like) -->
+<div class="h-8 flex items-center justify-between px-4 opacity-60">
+<span class="text-xs font-mono-data">R3P_SYS_V2.0</span>
+<span class="text-xs font-mono-data" id="current-time">14:22:05</span>
+</div>
+<!-- Main Alert Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-container-padding pt-stack-md pb-stack-lg">
+<!-- Pulsing Icon Container -->
+<div class="relative mb-stack-lg">
+<div class="absolute inset-0 bg-white opacity-20 rounded-full pulse-animation"></div>
+<div class="relative w-24 h-24 bg-white rounded-full flex items-center justify-center text-[#D32F2F] glow-red">
+<span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<!-- Critical Headline -->
+<h1 class="font-display-lg text-display-lg-mobile text-center leading-none mb-stack-md uppercase tracking-tighter">
+            CRITICAL EMERGENCY ALERT
+        </h1>
+<!-- Incident Info Card -->
+<div class="w-full bg-black/20 backdrop-blur-sm rounded-xl p-stack-md border border-white/20 mb-stack-lg">
+<div class="flex items-center gap-unit mb-unit opacity-80">
+<span class="material-symbols-outlined text-sm">train</span>
+<span class="font-label-lg uppercase tracking-widest">Incident Details</span>
+</div>
+<div class="space-y-unit">
+<p class="font-headline-md text-headline-md leading-tight">Derailment - Train 12424</p>
+<div class="flex items-center gap-unit text-white/90">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="font-body-lg text-body-lg">Location: KM 422, North Zone</p>
+</div>
+</div>
+</div>
+<!-- Action Section -->
+<div class="w-full flex flex-col gap-stack-md">
+<!-- Primary Action -->
+<button class="w-full h-16 bg-white text-emerald-700 rounded-xl flex items-center justify-center gap-unit transition-all active:scale-95 shadow-xl">
+<span class="material-symbols-outlined font-bold">check_circle</span>
+<span class="font-headline-sm uppercase font-black">ACCEPT &amp; ON MY WAY</span>
+</button>
+<!-- Secondary Actions -->
+<div class="flex flex-col gap-unit">
+<button class="w-full h-14 border-2 border-white/40 text-white rounded-xl flex items-center justify-center gap-unit transition-all active:bg-white/10">
+<span class="material-symbols-outlined text-xl">block</span>
+<span class="font-label-lg uppercase">CANNOT RESPOND</span>
+</button>
+<button class="w-full h-14 border-2 border-white/40 text-white rounded-xl flex items-center justify-center gap-unit transition-all active:bg-white/10">
+<span class="material-symbols-outlined text-xl">help_center</span>
+<span class="font-label-lg uppercase">NEED SUPPORT</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Map Context Overlay (Minimal) -->
+<div class="px-container-padding pb-24">
+<div class="h-32 w-full rounded-xl overflow-hidden relative border border-white/30">
+<img alt="Map context" class="w-full h-full object-cover grayscale opacity-50" data-alt="A detailed satellite view map of a rural Indian railway junction with multiple tracks merging into a single line. The scene is overcast with a dramatic, high-contrast atmosphere. The visual style is professional, data-driven, and serves as a technical backdrop for an emergency control room interface. The map is overlaid with a subtle red tint to match the emergency dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2r3eOFmJEqWM_vsVorb07OOhzfepPOJa09n6XfUZbCK8PUa-1W4ztzRkFLzzwkCpPj_Fd6rKHvWhHCAPePu8-4xG9z2fPgqdQFim0iCEaw_ZLTTm5BluKNj0kJf-dK-tZuC9o2bpPJiljbUfK2lJnixT17CXCVi_v-o-RoRDuKyM_E83fnP8rTLhBhPN_A99_eNQ2asMhWQAtjrhdX3nSUxnQb3xY_su7zpvu3D83RIORThVdl2JDYaGV5JiExtBru17dcn2_hfs">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-4 h-4 bg-white rounded-full pulse-animation shadow-lg"></div>
+</div>
+<div class="absolute bottom-2 right-2 bg-black/40 px-2 py-1 rounded text-[10px] font-mono-data">
+                LAT: 28.6139 | LON: 77.2090
+            </div>
+</div>
+</div>
+<!-- Hidden Bottom Bar as mandated by Shared Components Logic but strictly minimized -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-4 bg-black/10 backdrop-blur-md border-t border-white/10">
+<div class="flex flex-col items-center justify-center bg-white/20 text-white rounded-full px-6 py-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-md-mobile mt-1 uppercase">Active</span>
+</div>
+<div class="flex flex-col items-center justify-center text-white/50 px-4 py-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined">support</span>
+<span class="font-label-md-mobile mt-1 uppercase">Response</span>
+</div>
+<div class="flex flex-col items-center justify-center text-white/50 px-4 py-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md-mobile mt-1 uppercase">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-white/50 px-4 py-2 opacity-30 pointer-events-none">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md-mobile mt-1 uppercase">Profile</span>
+</div>
+</nav>
+<script>
+        // Real-time clock for system feel
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('current-time').textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Haptic feedback simulation
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50);
+                }
+            });
+        });
+
+        // Trigger pulse on interval
+        setInterval(() => {
+            const icon = document.querySelector('.glow-red');
+            icon.classList.add('scale-110');
+            setTimeout(() => icon.classList.remove('scale-110'), 200);
+        }, 3000);
+    </script>
+</body></html>
